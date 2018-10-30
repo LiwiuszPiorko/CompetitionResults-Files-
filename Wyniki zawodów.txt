@@ -1,1 +1,1 @@
-Nick gracza: Lol  Wynik: 234 Nick gracza: A  Wynik: 12 
+Nick gracza: Lol  Wynik: 1 Nick gracza: An  Wynik: 123 

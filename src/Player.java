@@ -1,4 +1,4 @@
-import java.util.Comparator;
+
 
 public class Player implements Comparable<Player> {
     String name;
@@ -27,10 +27,10 @@ public class Player implements Comparable<Player> {
 
     @Override
     public int compareTo(Player o) {
-        if(this.score > o.score)
+        if (this.score > o.score)
             return 1;
         else if (this.score == o.score)
-            return this.name.compareTo(o.name);
+            return 0;
         else
             return -1;
     }
