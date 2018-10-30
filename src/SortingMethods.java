@@ -8,7 +8,7 @@ public class SortingMethods {
     final static String STOP = "Stop";
     final static String TAK = "Tak";
     final static String NIE = "Nie";
-    final static String NAME = "Nick";
+    final static String NICK = "Nick";
     final static String SCORE = "Wynik";
 
 
@@ -20,11 +20,13 @@ public class SortingMethods {
             Scanner addName = new Scanner(System.in);
             String name = (addName.nextLine());
             if (name.equals(STOP)) {
-                System.out.println("Jak rozumiem chcesz zakończyć? Czy chcesz posortować listę ");
-                sortList(addName.nextLine(), addName.nextLine(), listOfPlayers);
+                System.out.println("Jak rozumiem chcesz zakończyć? Czy chcesz posortować tabele wyników? ");
+                System.out.println("Jeśli Twoja odpowiedź brzmi 'Tak', wybierz kryterium sortowania.\n");
+                System.out.println("1. Wybierz 'Nick', jeśli chesz psortować tabele wyników po nicku gracza.");
+                System.out.println("2. Wybierz 'Wynik' jeśli chcesz posortować tabelę według osiągętego wyniku.");
+                sortList(addName.nextLine(),addName.nextLine(), listOfPlayers);
                 break;
             }
-
             System.out.println("Podaj liczbę punktów: ");
             Scanner addScore = new Scanner(System.in);
             int score = (addScore.nextInt());
@@ -35,29 +37,27 @@ public class SortingMethods {
             System.out.println("Nick gracza: " + list.getName() + ", Wynik: " + list.getScore());
         }
     }
-
-    static void sortList(String choice, String option, List<Player> players) {
-        switch (choice) {
+    static void sortList(String choice,String sorting, List<Player> players) {
+        switch (choice)
+        {
             case TAK:
-                System.out.println("Rozumiem. Według jakich kryteriów chcesz posortować tabelę?");
-                switch (option) {
-                    case NAME:
+                switch(sorting) {
+                    case NICK:
                         comparePlayersByName(players);
                         fileWriter(players);
+                        break;
                     case SCORE:
                         comparePlayersByScore(players);
                         fileWriter(players);
                         break;
                 }
-
+                break;
             case NIE:
                 System.out.println("W takim razie zapisuję tabelę w pliku w takiej formie. ");
                 fileWriter(players);
                 break;
         }
-
     }
-
     static void comparePlayersByName(List<Player> players) {
         Collections.sort(players, new Comparator<Player>() {
             @Override
@@ -66,17 +66,9 @@ public class SortingMethods {
             }
         });
     }
-
-    static void comparePlayersByScore(List<Player> players) {
-        Collections.sort(players, new Comparator<Player>() {
-            @Override
-            public int compare(Player o1, Player o2) {
-                return o1.getScore().compareTo(o2.getScore());
-            }
-        });
+    static void comparePlayersByScore(List<Player>players){
+        Collections.sort(players);
     }
-
-
     static void fileWriter(List<Player> listOfPlayers) {
 
         String fileName = "Wyniki zawodów.txt";
@@ -93,5 +85,5 @@ public class SortingMethods {
         }
         System.out.println("Wyniki zapisano do pliku.");
     }
-}}
+}
 
